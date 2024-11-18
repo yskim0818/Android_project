@@ -29,10 +29,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-        return super.onCreateView(name, context, attrs)
-    }
-
     private fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .add(R.id.main, fragment)
