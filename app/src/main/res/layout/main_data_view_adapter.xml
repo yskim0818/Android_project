@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_data_item"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:background="@color/white"
+    android:paddingHorizontal="20dp">
+
+    <LinearLayout
+        android:id="@+id/manage_contacts_adapter"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/manage_contacts_adapter_text"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="홍길동"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:gravity="center"/>
+    </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#eaeaea"
+        app:layout_constraintBottom_toBottomOf="@id/manage_contacts_adapter"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
