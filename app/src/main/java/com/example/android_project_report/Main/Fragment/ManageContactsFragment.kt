@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_project_report.Data.UserData
+import com.example.android_project_report.Main.MainActivity
 import com.example.android_project_report.Main.MainData.MainDataViewAdapter
 import com.example.android_project_report.R
 import com.example.android_project_report.Util.setOnSingleClickListener
@@ -23,11 +24,14 @@ class ManageContactsFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentManageContactsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        binding.manageContactsBackBtn.setOnSingleClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-            Log.d("ManageContactsFragment", "manageContactsBackBtn 클릭")
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val sActivity = requireActivity() as MainActivity
+        sActivity.setTitle("연락처 관리")
 
         binding.addContactBtn.setOnSingleClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
@@ -38,12 +42,6 @@ class ManageContactsFragment: Fragment() {
         }
 
         initRecyclerView()
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {

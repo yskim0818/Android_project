@@ -22,68 +22,18 @@
         app:layout_constraintGuide_percent="0.95"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_title_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05"/>
-
-    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_title_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_horizontal_list_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2"/>
+        app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_list_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.8"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/main_button_bg"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal_title_bottom"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_right"
-        app:layout_constraintStart_toEndOf="@id/guideline_vertical_left"
-        app:layout_constraintTop_toTopOf="@id/guideline_horizontal_title_top">
-
-        <ImageButton
-            android:id="@+id/manage_contacts_back_btn"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/left_arrow"
-            android:background="@drawable/image_white_bg"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/manage_contacts_text"
-            android:layout_marginEnd="40dp"/>
-
-        <TextView
-            android:id="@+id/manage_contacts_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="연락처 관리"
-            android:gravity="center"
-            android:textSize="30sp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintGuide_percent="0.7"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
@@ -91,7 +41,7 @@
         android:background="@drawable/main_button_bg"
         app:layout_constraintStart_toEndOf="@id/guideline_vertical_left"
         app:layout_constraintEnd_toStartOf="@id/guideline_vertical_right"
-        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_list_top"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_title_bottom"
         app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_list_bottom">
         
         <androidx.recyclerview.widget.RecyclerView

@@ -44,11 +44,18 @@
         app:layout_constraintGuide_percent="0.7"/>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical_center"
+        android:id="@+id/guideline_vertical_center_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"/>
+        app:layout_constraintGuide_percent="0.35"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_center_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_bottom"
@@ -76,7 +83,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3">
                 <TextView
-                    android:id="@+id/add_contact_name_text"
+                    android:id="@+id/info_contact_name_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="성명"
@@ -90,7 +97,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5">
                 <EditText
-                    android:id="@+id/add_contact_edittext_name"
+                    android:id="@+id/info_contact_edittext_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -110,7 +117,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3">
                 <TextView
-                    android:id="@+id/add_contact_phone_number_text"
+                    android:id="@+id/info_contact_phone_number_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="전화번호"
@@ -124,7 +131,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5">
                 <EditText
-                    android:id="@+id/add_contact_edittext_phone_number"
+                    android:id="@+id/info_contact_edittext_phone_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -145,7 +152,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3">
                 <TextView
-                    android:id="@+id/add_contact_email_text"
+                    android:id="@+id/info_contact_email_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="이메일"
@@ -159,7 +166,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5">
                 <EditText
-                    android:id="@+id/add_contact_edittext_email"
+                    android:id="@+id/info_contact_edittext_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -179,7 +186,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3">
                 <TextView
-                    android:id="@+id/add_contact_work_place_text"
+                    android:id="@+id/info_contact_work_place_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="직장명"
@@ -193,7 +200,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5">
                 <EditText
-                    android:id="@+id/add_contact_edittext_work_place"
+                    android:id="@+id/info_contact_edittext_work_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -213,7 +220,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="3">
                 <TextView
-                    android:id="@+id/add_contact_job_title_text"
+                    android:id="@+id/info_contact_job_title_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="직함"
@@ -227,7 +234,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="5">
                 <EditText
-                    android:id="@+id/add_contact_edittext_job_title"
+                    android:id="@+id/info_contact_edittext_job_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -241,27 +248,42 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_contact_save_btn"
-        android:layout_width="140dp"
+        android:id="@+id/info_contact_save_btn"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="저장"
         android:textSize="30sp"
+        android:layout_margin="10dp"
         android:background="@drawable/main_button_bg"
         app:layout_constraintStart_toEndOf="@id/guideline_vertical_left"
-        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_center"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_center_left"
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_list_bottom"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal_bottom"/>
+        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_bottom"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_contact_cancel_btn"
-        android:layout_width="140dp"
+        android:id="@+id/info_contact_share_btn"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="공유"
+        android:textSize="30sp"
+        android:layout_margin="10dp"
+        android:background="@drawable/main_button_bg"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_center_left"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_center_right"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_list_bottom"
+        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_bottom"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/info_contact_cancel_btn"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="취소"
         android:textSize="30sp"
+        android:layout_margin="10dp"
         android:background="@drawable/main_button_bg"
-        app:layout_constraintStart_toEndOf="@id/guideline_vertical_center"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_center_right"
         app:layout_constraintEnd_toStartOf="@id/guideline_vertical_right"
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_list_bottom"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal_bottom"/>
+        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_bottom"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
