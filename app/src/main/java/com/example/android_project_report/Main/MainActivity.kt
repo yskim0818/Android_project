@@ -1,7 +1,10 @@
 package com.example.android_project_report.Main
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.android_project_report.Main.Fragment.ManageContactsFragment
@@ -24,6 +27,10 @@ class MainActivity : AppCompatActivity() {
             Log.d("MainActivity", "연락처 관리 버튼 눌림")
         }
 
+    }
+
+    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
+        return super.onCreateView(name, context, attrs)
     }
 
     private fun showFragment(fragment: Fragment) {
