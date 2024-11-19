@@ -1,16 +1,15 @@
 package com.example.android_project_report.Main
 
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.example.android_project_report.Main.Fragment.AddContactFragment
+import com.example.android_project_report.Main.Fragment.ContactInfoFragment
+import com.example.android_project_report.Main.Fragment.InternetSearchFragment
 import com.example.android_project_report.Main.Fragment.ManageContactsFragment
+import com.example.android_project_report.Main.Fragment.PhoneBehaviorStatusFragment
 import com.example.android_project_report.Main.Fragment.StartMenuFragment
 import com.example.android_project_report.R
 import com.example.android_project_report.Util.setOnSingleClickListener
@@ -94,6 +93,19 @@ class MainActivity : AppCompatActivity() {
                 is AddContactFragment -> {
                     setBackButton(false)
                     setTitle("연락처 관리")
+                    this@MainActivity.supportFragmentManager.popBackStack()
+                }
+                is ContactInfoFragment -> {
+                    setBackButton(false)
+                    setTitle("연락처 관리")
+                    this@MainActivity.supportFragmentManager.popBackStack()
+                }
+                is InternetSearchFragment -> {
+                    setBackButton(true)
+                    this@MainActivity.supportFragmentManager.popBackStack()
+                }
+                is PhoneBehaviorStatusFragment -> {
+                    setBackButton(true)
                     this@MainActivity.supportFragmentManager.popBackStack()
                 }
             }

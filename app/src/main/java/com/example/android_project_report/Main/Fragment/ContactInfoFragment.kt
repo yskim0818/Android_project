@@ -1,22 +1,21 @@
 package com.example.android_project_report.Main.Fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android_project_report.Main.MainActivity
 import com.example.android_project_report.Util.setOnSingleClickListener
-import com.example.android_project_report.databinding.FragmentAddContactBinding
+import com.example.android_project_report.databinding.FragmentContactInfoBinding
 
-class AddContactFragment: Fragment() {
+class ContactInfoFragment: Fragment() {
 
-    private var mBinding: FragmentAddContactBinding?= null
+    private var mBinding: FragmentContactInfoBinding?= null
     private val binding get() = mBinding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mBinding = FragmentAddContactBinding.inflate(inflater, container, false)
+        mBinding = FragmentContactInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -24,18 +23,15 @@ class AddContactFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val sActivity = requireActivity() as MainActivity
-        sActivity.setTitle("연락처 추가")
+        sActivity.setTitle("연락처 정보")
 
-        binding.addContactCancelBtn.setOnSingleClickListener {
+        binding.infoContactCancelBtn.setOnSingleClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-//                .addToBackStack(null)
                 .remove(this)
                 .commit()
             sActivity.setTitle("연락처 관리")
-//            requireActivity().supportFragmentManager.popBackStack()
             sActivity.supportFragmentManager.popBackStack()
         }
-
     }
 
     override fun onDestroyView() {

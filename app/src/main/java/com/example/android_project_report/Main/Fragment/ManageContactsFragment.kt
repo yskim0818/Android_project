@@ -35,7 +35,7 @@ class ManageContactsFragment: Fragment() {
 
         binding.addContactBtn.setOnSingleClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .add(R.id.fragment_manage_contacts, AddContactFragment())
+                .replace(R.id.fragment_manage_contacts, AddContactFragment())
                 .addToBackStack(null)
                 .commit()
             Log.d("ManageContactsFragment", "addContactBtn 클릭")

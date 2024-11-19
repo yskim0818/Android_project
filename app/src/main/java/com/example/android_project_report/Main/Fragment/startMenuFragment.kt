@@ -29,6 +29,20 @@ class StartMenuFragment: Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
+        binding.internetSearchBtnLayout.setOnSingleClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, InternetSearchFragment())
+                .addToBackStack(null)
+                .commit()
+        }
+
+        binding.phoneStatusSearchBtnLayout.setOnSingleClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, PhoneBehaviorStatusFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     override fun onDestroyView() {
