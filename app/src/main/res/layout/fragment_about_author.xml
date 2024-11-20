@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_about_author"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/main_button_bg"
+        app:layout_constraintTop_toTopOf="@id/guideline_horizontal_top"
+        app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal_bottom"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_left"
+        app:layout_constraintEnd_toEndOf="@id/guideline_vertical_right">
+
+        <TextView
+            android:id="@+id/about_author_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:lineSpacingExtra="5dp"
+            android:textScaleX="1.1"
+            android:text="\n본인 소개 내용 표시\n\n본 app의 저자인 김예성은 2004년에 서울 강남구 대치동에서 출생하였으며 초등학교는 서울도곡초등학교를 졸업하였고, 중학교는 대명중학교를 고등학교는 단국대학교부속소프트웨어고등학교를 졸업해서 2023년도에 한국공학대학교 AI소프트웨어학과에 입학하였고 2024년 3월에 디바이스디자인에 취직하여 2024년 11월 현재는 안드로이드 앱 개발자로 일하고 있습니다.\n감사합니다."
+            android:textSize="20sp"
+            android:textColor="@color/black" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

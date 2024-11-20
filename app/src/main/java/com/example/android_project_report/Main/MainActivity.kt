@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.example.android_project_report.Main.Fragment.AboutauthorFragment
 import com.example.android_project_report.Main.Fragment.AddContactFragment
 import com.example.android_project_report.Main.Fragment.ContactInfoFragment
 import com.example.android_project_report.Main.Fragment.InternetSearchFragment
@@ -105,6 +106,10 @@ class MainActivity : AppCompatActivity() {
                     this@MainActivity.supportFragmentManager.popBackStack()
                 }
                 is PhoneBehaviorStatusFragment -> {
+                    setBackButton(true)
+                    this@MainActivity.supportFragmentManager.popBackStack()
+                }
+                is AboutauthorFragment -> {
                     setBackButton(true)
                     this@MainActivity.supportFragmentManager.popBackStack()
                 }

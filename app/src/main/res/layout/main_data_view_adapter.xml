@@ -19,12 +19,12 @@
 
         <TextView
             android:id="@+id/manage_contacts_adapter_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="홍길동"
             android:textSize="30sp"
             android:textColor="@color/black"
-            android:gravity="center"/>
+            android:gravity="left|center"/>
     </LinearLayout>
     
     <View

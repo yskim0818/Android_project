@@ -1,6 +1,8 @@
 package com.example.android_project_report.Main.Fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,8 @@ class StartMenuFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        requestUsagePermission()
+
         binding.manageContactsBtnLayout.setOnSingleClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.container, ManageContactsFragment())
@@ -43,11 +47,23 @@ class StartMenuFragment: Fragment() {
                 .addToBackStack(null)
                 .commit()
         }
+
+        binding.authorIntroduceBtnLayout.setOnSingleClickListener {
+            requireActivity().supportFragmentManager.beginTransaction()
+                .replace(R.id.container, AboutauthorFragment())
+                .addToBackStack(null)
+                .commit()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         mBinding = null
+    }
+
+    private fun requestUsagePermission() {
+        val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+        startActivity(intent)
     }
 
 }

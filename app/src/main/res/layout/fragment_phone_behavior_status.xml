@@ -36,13 +36,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85"/>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_vertical_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5"/>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragment_phone_behavior_status_layout"
         android:layout_width="0dp"
@@ -54,84 +47,165 @@
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_top"
         app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_bottom">
 
-        <LinearLayout
-            android:id="@+id/fragment_phone_behavior_status_linear_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_phone_behavior_status_layout_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:weightSum="5">
+            android:layout_margin="15dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/android_version_layout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vertical_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.55"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="안드로이드 버전."
-                    android:textSize="24sp"
-                    android:textColor="@color/black"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Android:"
-                    android:textSize="24sp"
-                    android:textColor="@color/black" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_layout_top"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.0"/>
 
-            <LinearLayout
-                android:id="@+id/WIFI_status_layout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_layout_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="1.0"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_android_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.2"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="WIFI"
-                    android:textSize="24sp"
-                    android:textColor="@color/black"
-                    android:layout_gravity="center"/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_wifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.4"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ON"
-                    android:textSize="24sp"
-                    android:textColor="@color/black"
-                    andro/>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_lte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.6"/>
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_horizontal_sdcard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.8"/>
 
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/LTE_status_layout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"/>
-            <LinearLayout
-                android:id="@+id/sdcard_capacity_layout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"/>
-            <LinearLayout
-                android:id="@+id/installed_apps_number_layout"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="안드로이드 버전."
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_layout_top"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_android_version"/>
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/android_version_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Android: 10 Q"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_center"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_layout_top"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_android_version"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WIFI"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_android_version"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_wifi"/>
+
+            <TextView
+                android:id="@+id/wifi_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ON"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_center"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_android_version"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_wifi"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LTE"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_wifi"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_lte"/>
+
+            <TextView
+                android:id="@+id/lte_status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OFF"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_center"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_wifi"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_lte"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SDCARD용량\n(전체용량/남은용량)"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_lte"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_sdcard"/>
+
+            <TextView
+                android:id="@+id/sdcard_capacity_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="64GB/20GB"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_center"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_lte"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_sdcard"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="설치한 app수/\n동작중인 app수"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_sdcard"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_layout_bottom"/>
+
+            <TextView
+                android:id="@+id/app_number_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="100/2"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/guideline_vertical_center"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_sdcard"
+                app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_layout_bottom"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
