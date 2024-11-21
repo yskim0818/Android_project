@@ -41,6 +41,7 @@ class ManageContactsFragment: Fragment() {
         initRecyclerView()
         loadData()
 
+        // 저장후 리사이클러뷰 갱신 이슈
 //        adapter = MainDataViewAdapter(requireContext())
 //        binding.recyclerViewManageContactsList.layoutManager = LinearLayoutManager(requireContext())
 //        binding.recyclerViewManageContactsList.adapter = adapter
