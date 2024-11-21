@@ -28,6 +28,9 @@ class PhoneBehaviorStatusFragment: Fragment() {
     private var mBinding: FragmentPhoneBehaviorStatusBinding? = null
     private val binding get() = mBinding!!
 
+    private var isPermissionChecked = false
+    private var isPermissionDialogShown = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentPhoneBehaviorStatusBinding.inflate(inflater, container, false)
         return binding.root
@@ -83,9 +86,12 @@ class PhoneBehaviorStatusFragment: Fragment() {
             return
         }
 
-        val runningAppsCount = getRunningAppsCount()
-        val userAppsCount = getUserAppsCount()
-        binding.appNumberText.text = "$userAppsCount / $runningAppsCount"
+        if (!isPermissionChecked) {
+            val runningAppsCount = getRunningAppsCount()
+            val userAppsCount = getUserAppsCount()
+            binding.appNumberText.text = "$userAppsCount / $runningAppsCount"
+            isPermissionChecked = true
+        }
     }
 
     override fun onDestroyView() {
@@ -113,7 +119,7 @@ class PhoneBehaviorStatusFragment: Fragment() {
 
         return apps.size
     }
-
+//      전체 동작중인 앱 가져오기
 //    private fun getRunningAppsCount() : Int {
 //        val activityManager = requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 //        val runningAppProcess = activityManager.runningAppProcesses
@@ -151,7 +157,10 @@ class PhoneBehaviorStatusFragment: Fragment() {
         val mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, Process.myUid(), requireContext().packageName)
 
         if (mode != AppOpsManager.MODE_ALLOWED) {
-            openUsageAccessSettings()
+            if (!isPermissionDialogShown) {
+                openUsageAccessSettings()
+                isPermissionDialogShown = true
+            }
             return false
         }
         return true
