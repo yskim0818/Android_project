@@ -13,7 +13,7 @@ class MainDataViewAdapter(private val context: Context): RecyclerView.Adapter<Ma
     var userlist = mutableListOf<UserData>()
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val binding = MainDataViewAdapterBinding.inflate(LayoutInflater.from(viewGroup.context))
+        val binding = MainDataViewAdapterBinding.inflate(LayoutInflater.from(viewGroup.context),viewGroup,false)
         return ViewHolder(binding)
     }
 

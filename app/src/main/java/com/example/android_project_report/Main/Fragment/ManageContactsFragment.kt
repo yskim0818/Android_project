@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.util.doubleFromBits
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android_project_report.Data.DBHelper
 import com.example.android_project_report.Data.UserData
 import com.example.android_project_report.Main.MainActivity
 import com.example.android_project_report.Main.MainData.MainDataViewAdapter
@@ -19,8 +21,9 @@ class ManageContactsFragment: Fragment() {
     private var mBinding: FragmentManageContactsBinding?= null
     private val binding get() = mBinding!!
 
-    private lateinit var adapter: MainDataViewAdapter
+    lateinit var adapter: MainDataViewAdapter
     private val mDatas = mutableListOf<UserData>()
+    private lateinit var dbHelper: DBHelper
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = FragmentManageContactsBinding.inflate(inflater, container, false)
@@ -30,8 +33,17 @@ class ManageContactsFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dbHelper = DBHelper(requireContext())
+
         val sActivity = requireActivity() as MainActivity
         sActivity.setTitle("연락처 관리")
+
+        initRecyclerView()
+        loadData()
+
+//        adapter = MainDataViewAdapter(requireContext())
+//        binding.recyclerViewManageContactsList.layoutManager = LinearLayoutManager(requireContext())
+//        binding.recyclerViewManageContactsList.adapter = adapter
 
         binding.addContactBtn.setOnSingleClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
@@ -41,7 +53,9 @@ class ManageContactsFragment: Fragment() {
             Log.d("ManageContactsFragment", "addContactBtn 클릭")
         }
 
-        initRecyclerView()
+//        initRecyclerView()
+//        loadData()
+
     }
 
     override fun onDestroyView() {
@@ -50,21 +64,19 @@ class ManageContactsFragment: Fragment() {
     }
 
     private fun initRecyclerView() {
-        initializelist()
-
         adapter = MainDataViewAdapter(requireContext())
-        adapter.userlist = mDatas
-
         binding.recyclerViewManageContactsList.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewManageContactsList.adapter = adapter
-
     }
 
-    private fun initializelist() {
-        mDatas.add(UserData("홍길동"))
-        mDatas.add(UserData("김철수"))
-        mDatas.add(UserData("이수민"))
-        mDatas.add(UserData("김예성"))
+    fun loadData() {
+        val users = dbHelper.getAllUsers()
+
+        mDatas.clear()
+        mDatas.addAll(users)
+
+        adapter.userlist = mDatas
+        adapter.notifyDataSetChanged()
     }
 
 }
