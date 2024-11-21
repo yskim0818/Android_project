@@ -1,15 +1,20 @@
 package com.example.android_project_report.Main.Fragment
 
 import android.app.ActivityManager
+import android.app.AppOpsManager
 import android.app.Application
 import android.app.usage.UsageStatsManager
 import android.content.Context
+import android.content.Context.APP_OPS_SERVICE
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.os.StatFs
+import android.os.Process
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -71,6 +76,18 @@ class PhoneBehaviorStatusFragment: Fragment() {
         binding.appNumberText.text = "$userAppsCount / $runningAppsCount"
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        if (!checkPermissionUsage()) {
+            return
+        }
+
+        val runningAppsCount = getRunningAppsCount()
+        val userAppsCount = getUserAppsCount()
+        binding.appNumberText.text = "$userAppsCount / $runningAppsCount"
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         mBinding = null
@@ -97,20 +114,20 @@ class PhoneBehaviorStatusFragment: Fragment() {
         return apps.size
     }
 
-    private fun getRunningAppsCount() : Int {
-        val activityManager = requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val runningAppProcess = activityManager.runningAppProcesses
-        return runningAppProcess?.size ?: 0
-
-//        val usageStatsManager =  requireContext().getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-//        val time = System.currentTimeMillis()
-//        val stats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 3600, time)
+//    private fun getRunningAppsCount() : Int {
+//        val activityManager = requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+//        val runningAppProcess = activityManager.runningAppProcesses
+//        return runningAppProcess?.size ?: 0
 //
-//        if (stats != null && stats.isNotEmpty()) {
-//            return stats.size
-//        }
-//        return 0
-    }
+////        val usageStatsManager =  requireContext().getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+////        val time = System.currentTimeMillis()
+////        val stats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 3600, time)
+////
+////        if (stats != null && stats.isNotEmpty()) {
+////            return stats.size
+////        }
+////        return 0
+//    }
     //전체 앱 가져오기 test
     private fun getAllInstalledAppsCount(): Int {
         val packageManager = requireContext().packageManager
@@ -125,6 +142,45 @@ class PhoneBehaviorStatusFragment: Fragment() {
         val userApps = apps.filter { appInfo ->
             appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0
         }
+
+        return userApps.size
+    }
+
+    private fun checkPermissionUsage(): Boolean {
+        val appOps = requireContext().getSystemService(APP_OPS_SERVICE) as AppOpsManager
+        val mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, Process.myUid(), requireContext().packageName)
+
+        if (mode != AppOpsManager.MODE_ALLOWED) {
+            openUsageAccessSettings()
+            return false
+        }
+        return true
+
+//        return mode == AppOpsManager.MODE_ALLOWED
+    }
+
+    private fun openUsageAccessSettings() {
+        val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
+        startActivity(intent)
+    }
+
+    private fun getRunningAppsCount(): Int {
+        if (!checkPermissionUsage()) {
+            return 0
+        }
+
+        val usageStateManager = requireContext().getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+        val time = System.currentTimeMillis()
+        val stats = usageStateManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 3600, time)
+
+        val userApps = stats?.filter { usageStat ->
+            try {
+                val appInfo = requireContext().packageManager.getApplicationInfo(usageStat.packageName, 0)
+                appInfo.flags and ApplicationInfo.FLAG_SYSTEM == 0
+            } catch (e: PackageManager.NameNotFoundException) {
+                false
+            }
+        } ?: emptyList()
 
         return userApps.size
     }

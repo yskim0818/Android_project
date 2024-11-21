@@ -1,10 +1,18 @@
 package com.example.android_project_report.Main
 
+import android.app.AppOpsManager
+import android.app.AppOpsManager.MODE_ALLOWED
+import android.app.AppOpsManager.OPSTR_GET_USAGE_STATS
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.text.font.FontVariation
 import com.example.android_project_report.Main.Fragment.AboutauthorFragment
 import com.example.android_project_report.Main.Fragment.AddContactFragment
 import com.example.android_project_report.Main.Fragment.ContactInfoFragment
@@ -39,6 +47,14 @@ class MainActivity : AppCompatActivity() {
         binding.backBtn.visibility = View.INVISIBLE
 
         supportFragmentManager.beginTransaction().replace(R.id.container, menuFragment).commit()
+
+//        if (!checkForPermission()) {
+//            Log.d("MainActivity", "Usage stats permission not granted")
+//            startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+//            // 권한 요청
+//        } else {
+//            Log.d("MainActivity", "Usage stats permission granted")
+//        }
 
     }
 
@@ -115,5 +131,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun checkForPermission(): Boolean {
+        val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
+        val mode = appOps.checkOpNoThrow(OPSTR_GET_USAGE_STATS, android.os.Process.myUid(), packageName)
+        return mode == MODE_ALLOWED
     }
 }
