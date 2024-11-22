@@ -1,5 +1,6 @@
 package com.example.android_project_report.Data
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -83,5 +84,26 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, "userDB", null, 1) {
         }
         return userList
 
+    }
+
+    fun updateUser(userData: UserData): Boolean {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("name", userData.name)
+            put("phone", userData.phone)
+            put("email", userData.email)
+            put("workPlace", userData.workPlace)
+            put("jobTitle", userData.jobTitle)
+        }
+        val result = db.update("users", values, "id = ?", arrayOf(userData.id.toString()))
+        db.close()
+        return result > 0
+    }
+
+    fun deleteUser(userId: Long): Boolean {
+        val db = writableDatabase
+        val result = db.delete("users", "id = ?", arrayOf(userId.toString()))
+        db.close()
+        return  result > 0
     }
 }

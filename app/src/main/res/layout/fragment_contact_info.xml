@@ -274,10 +274,10 @@
         app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_bottom"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/info_contact_cancel_btn"
+        android:id="@+id/info_contact_delete_btn"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:text="취소"
+        android:text="삭제"
         android:textSize="30sp"
         android:layout_margin="10dp"
         android:background="@drawable/main_button_bg"
