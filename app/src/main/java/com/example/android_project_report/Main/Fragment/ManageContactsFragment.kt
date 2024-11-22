@@ -52,6 +52,8 @@ class ManageContactsFragment: Fragment(), MainDataViewAdapter.OnContactClickList
 
     }
 
+    //test
+
     override fun onDestroyView() {
         super.onDestroyView()
         mBinding = null
