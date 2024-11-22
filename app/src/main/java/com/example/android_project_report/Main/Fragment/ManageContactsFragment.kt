@@ -15,8 +15,9 @@ import com.example.android_project_report.Main.MainData.MainDataViewAdapter
 import com.example.android_project_report.R
 import com.example.android_project_report.Util.setOnSingleClickListener
 import com.example.android_project_report.databinding.FragmentManageContactsBinding
+import kotlin.concurrent.thread
 
-class ManageContactsFragment: Fragment() {
+class ManageContactsFragment: Fragment(), MainDataViewAdapter.OnContactClickListener {
 
     private var mBinding: FragmentManageContactsBinding?= null
     private val binding get() = mBinding!!
@@ -64,7 +65,7 @@ class ManageContactsFragment: Fragment() {
     }
 
     private fun initRecyclerView() {
-        adapter = MainDataViewAdapter(requireContext())
+        adapter = MainDataViewAdapter(this)
         binding.recyclerViewManageContactsList.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewManageContactsList.adapter = adapter
     }
