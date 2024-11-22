@@ -15,8 +15,9 @@ import com.example.android_project_report.Main.MainData.MainDataViewAdapter
 import com.example.android_project_report.R
 import com.example.android_project_report.Util.setOnSingleClickListener
 import com.example.android_project_report.databinding.FragmentManageContactsBinding
+import kotlin.concurrent.thread
 
-class ManageContactsFragment: Fragment() {
+class ManageContactsFragment: Fragment(), MainDataViewAdapter.OnContactClickListener {
 
     private var mBinding: FragmentManageContactsBinding?= null
     private val binding get() = mBinding!!
@@ -41,10 +42,6 @@ class ManageContactsFragment: Fragment() {
         initRecyclerView()
         loadData()
 
-//        adapter = MainDataViewAdapter(requireContext())
-//        binding.recyclerViewManageContactsList.layoutManager = LinearLayoutManager(requireContext())
-//        binding.recyclerViewManageContactsList.adapter = adapter
-
         binding.addContactBtn.setOnSingleClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_manage_contacts, AddContactFragment())
@@ -52,9 +49,6 @@ class ManageContactsFragment: Fragment() {
                 .commit()
             Log.d("ManageContactsFragment", "addContactBtn 클릭")
         }
-
-//        initRecyclerView()
-//        loadData()
 
     }
 
@@ -64,7 +58,7 @@ class ManageContactsFragment: Fragment() {
     }
 
     private fun initRecyclerView() {
-        adapter = MainDataViewAdapter(requireContext())
+        adapter = MainDataViewAdapter(this)
         binding.recyclerViewManageContactsList.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewManageContactsList.adapter = adapter
     }
@@ -77,6 +71,25 @@ class ManageContactsFragment: Fragment() {
 
         adapter.userlist = mDatas
         adapter.notifyDataSetChanged()
+    }
+
+    override fun onContactClick(userData: UserData) {
+        Log.d("ManageContactsFragment", "onContactClick: ${userData.name}")
+
+        val infoFragment = ContactInfoFragment().apply {
+            arguments = Bundle().apply {
+                putLong("id", userData.id)
+                putString("name", userData.name)
+                putString("phone", userData.phone)
+                putString("email", userData.email)
+                putString("workPlace", userData.workPlace)
+                putString("jobTitle", userData.jobTitle)
+            }
+        }
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.container, infoFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
 }

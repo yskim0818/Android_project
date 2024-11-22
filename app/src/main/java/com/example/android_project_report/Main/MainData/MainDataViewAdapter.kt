@@ -8,9 +8,14 @@ import com.example.android_project_report.Data.UserData
 import com.example.android_project_report.R
 import com.example.android_project_report.databinding.MainDataViewAdapterBinding
 
-class MainDataViewAdapter(private val context: Context): RecyclerView.Adapter<MainDataViewAdapter.ViewHolder>() {
+class MainDataViewAdapter(private val listener: OnContactClickListener)
+    : RecyclerView.Adapter<MainDataViewAdapter.ViewHolder>() {
 
     var userlist = mutableListOf<UserData>()
+
+    interface OnContactClickListener {
+        fun onContactClick(userData: UserData)
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding = MainDataViewAdapterBinding.inflate(LayoutInflater.from(viewGroup.context),viewGroup,false)
@@ -27,6 +32,9 @@ class MainDataViewAdapter(private val context: Context): RecyclerView.Adapter<Ma
     inner class ViewHolder(private val binding: MainDataViewAdapterBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(data: UserData) {
             binding.manageContactsAdapterText.text = data.name
+            binding.root.setOnClickListener {
+                listener.onContactClick(data)
+            }
         }
     }
 

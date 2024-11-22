@@ -25,11 +25,9 @@ class StartMenuFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        requestUsagePermission()
-
         binding.manageContactsBtnLayout.setOnSingleClickListener {
             requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.container, ManageContactsFragment())
+                .replace(R.id.container, ManageContactsFragment(), "ManageContactsFragment")
                 .addToBackStack(null)
                 .commit()
         }
@@ -59,11 +57,6 @@ class StartMenuFragment: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         mBinding = null
-    }
-
-    private fun requestUsagePermission() {
-        val intent = Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS)
-        startActivity(intent)
     }
 
 }

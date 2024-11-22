@@ -164,8 +164,6 @@ class PhoneBehaviorStatusFragment: Fragment() {
             return false
         }
         return true
-
-//        return mode == AppOpsManager.MODE_ALLOWED
     }
 
     private fun openUsageAccessSettings() {

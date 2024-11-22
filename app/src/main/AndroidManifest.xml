@@ -25,7 +25,7 @@
             android:theme="@style/Theme.Android_Project_report"
             android:screenOrientation="sensorPortrait"
             android:usesCleartextTraffic="true"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

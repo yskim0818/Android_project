@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_data_item"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="60dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_vertical"
     android:background="@color/white"
@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/manage_contacts_adapter"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">

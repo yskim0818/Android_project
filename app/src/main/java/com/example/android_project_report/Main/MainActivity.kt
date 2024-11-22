@@ -28,13 +28,11 @@ class MainActivity : AppCompatActivity() {
 
     private val menuFragment: StartMenuFragment by lazy { StartMenuFragment() }
 
-
     private var mBinding: ActivityMainBinding?= null
     private val binding get() = mBinding!!
 
     private var mainTitle: TextView? = null
     private var menuTitle: TextView? = null
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,15 +45,6 @@ class MainActivity : AppCompatActivity() {
         binding.backBtn.visibility = View.INVISIBLE
 
         supportFragmentManager.beginTransaction().replace(R.id.container, menuFragment).commit()
-
-//        if (!checkForPermission()) {
-//            Log.d("MainActivity", "Usage stats permission not granted")
-//            startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
-//            // 권한 요청
-//        } else {
-//            Log.d("MainActivity", "Usage stats permission granted")
-//        }
-
     }
 
     override fun onResume() {
@@ -66,13 +55,6 @@ class MainActivity : AppCompatActivity() {
 
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
-
-//    private fun showFragment(fragment: Fragment) {
-//        supportFragmentManager.beginTransaction()
-//            .add(R.id.main, fragment)
-//            .addToBackStack(null)
-//            .commit()
-//    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -132,10 +114,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-    private fun checkForPermission(): Boolean {
-        val appOps = getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
-        val mode = appOps.checkOpNoThrow(OPSTR_GET_USAGE_STATS, android.os.Process.myUid(), packageName)
-        return mode == MODE_ALLOWED
-    }
+    
 }
