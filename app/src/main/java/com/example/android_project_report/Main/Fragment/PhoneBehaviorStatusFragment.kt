@@ -9,6 +9,9 @@ import android.content.Context.APP_OPS_SERVICE
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
@@ -22,6 +25,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android_project_report.Main.MainActivity
 import com.example.android_project_report.databinding.FragmentPhoneBehaviorStatusBinding
+import java.lang.reflect.Method
 
 class PhoneBehaviorStatusFragment: Fragment() {
 
@@ -47,6 +51,12 @@ class PhoneBehaviorStatusFragment: Fragment() {
 
         val versionName = "Android: $versionString"
         binding.androidVersionText.text = versionName
+
+        val wifiEnabled = isWifiEnabled(requireContext())
+        binding.wifiStatusText.text = if (wifiEnabled) "ON" else "OFF"
+
+        val mobileDataEnabled = isMobileDataEnabled(requireContext())
+        binding.lteStatusText.text = if (mobileDataEnabled) "ON" else "OFF"
 
         val storageCapacity = getInternalStorageCapacity()
         if (storageCapacity != null) {
@@ -190,5 +200,22 @@ class PhoneBehaviorStatusFragment: Fragment() {
         } ?: emptyList()
 
         return userApps.size
+    }
+
+    private fun isWifiEnabled(context: Context): Boolean {
+        val wifiManager = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        return wifiManager.isWifiEnabled
+    }
+
+    private fun isMobileDataEnabled(context: Context): Boolean {
+        try {
+            val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val method: Method = connectivityManager.javaClass.getDeclaredMethod("getMobileDataEnabled")
+            method.isAccessible = true
+            return method.invoke(connectivityManager) as Boolean
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return false
     }
 }
