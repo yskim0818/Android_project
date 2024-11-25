@@ -1,18 +1,10 @@
 package com.example.android_project_report.Main
 
-import android.app.AppOpsManager
-import android.app.AppOpsManager.MODE_ALLOWED
-import android.app.AppOpsManager.OPSTR_GET_USAGE_STATS
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.text.font.FontVariation
 import com.example.android_project_report.Main.Fragment.AboutauthorFragment
 import com.example.android_project_report.Main.Fragment.AddContactFragment
 import com.example.android_project_report.Main.Fragment.ContactInfoFragment
@@ -86,7 +78,6 @@ class MainActivity : AppCompatActivity() {
             when (lastFragment) {
                 is ManageContactsFragment -> {
                     setBackButton(true)
-//                    setTitle("연락처 관리")
                     this@MainActivity.supportFragmentManager.popBackStack()
                 }
                 is AddContactFragment -> {

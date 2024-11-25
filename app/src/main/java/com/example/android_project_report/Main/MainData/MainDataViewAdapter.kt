@@ -1,11 +1,9 @@
 package com.example.android_project_report.Main.MainData
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_project_report.Data.UserData
-import com.example.android_project_report.R
 import com.example.android_project_report.databinding.MainDataViewAdapterBinding
 
 class MainDataViewAdapter(private val listener: OnContactClickListener)

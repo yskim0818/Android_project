@@ -97,7 +97,7 @@
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textSize="22sp"
-                    android:maxLength="20"/>
+                    android:maxLength="20" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -132,7 +132,7 @@
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textSize="22sp"
-                    android:maxLength="20"/>
+                    android:maxLength="20" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -164,9 +164,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
                     android:singleLine="true"
                     android:textSize="22sp"
-                    android:maxLength="20"/>
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="16sp"
+                    android:autoSizeMaxTextSize="22sp"
+                    android:autoSizeStepGranularity="1sp"
+                    android:maxLines="1"
+                    android:maxLength="30"
+                    android:scrollHorizontally="false"
+                    android:ellipsize="none"
+                    android:gravity="center_vertical|start"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 

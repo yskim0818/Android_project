@@ -1,8 +1,6 @@
 package com.example.android_project_report.Main.Fragment
 
-import android.app.ActivityManager
 import android.app.AppOpsManager
-import android.app.Application
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.Context.APP_OPS_SERVICE
@@ -10,7 +8,6 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
@@ -18,7 +15,6 @@ import android.os.Environment
 import android.os.StatFs
 import android.os.Process
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,9 +76,6 @@ class PhoneBehaviorStatusFragment: Fragment() {
         val installedAppsCount = getInstalledAppsCount()
         val runningAppsCount = getRunningAppsCount()
 
-//        binding.appNumberText.text = "$installedAppsCount/$runningAppsCount"
-
-        //test
 
         val totalInstalledAppsCount = getAllInstalledAppsCount()
         val userAppsCount = getUserAppsCount()
@@ -129,22 +122,7 @@ class PhoneBehaviorStatusFragment: Fragment() {
 
         return apps.size
     }
-//      전체 동작중인 앱 가져오기
-//    private fun getRunningAppsCount() : Int {
-//        val activityManager = requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-//        val runningAppProcess = activityManager.runningAppProcesses
-//        return runningAppProcess?.size ?: 0
-//
-////        val usageStatsManager =  requireContext().getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-////        val time = System.currentTimeMillis()
-////        val stats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 3600, time)
-////
-////        if (stats != null && stats.isNotEmpty()) {
-////            return stats.size
-////        }
-////        return 0
-//    }
-    //전체 앱 가져오기 test
+
     private fun getAllInstalledAppsCount(): Int {
         val packageManager = requireContext().packageManager
         val apps = packageManager.getInstalledPackages(0)

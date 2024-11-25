@@ -2,7 +2,6 @@ package com.example.android_project_report.Main.Fragment
 
 import android.content.ContentValues
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,7 +33,6 @@ class AddContactFragment: Fragment() {
 
         binding.addContactSaveBtn.setOnClickListener {
             val isSaved = saveContact()
-//            saveContact()
             if (isSaved) {
                 val manageContactsFragment = sActivity.supportFragmentManager.findFragmentByTag("ManageContactsFragment") as? ManageContactsFragment
                 manageContactsFragment?.let {

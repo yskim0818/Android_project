@@ -2,7 +2,6 @@ package com.example.android_project_report.Main.Fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -96,7 +95,6 @@ class ContactInfoFragment: Fragment() {
                 type = "text/plain"
                 putExtra(Intent.EXTRA_TEXT, contactInfo)
             }
-
             startActivity(Intent.createChooser(shareIntent, "연락처 공유"))
         }
 
