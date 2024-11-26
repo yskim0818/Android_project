@@ -15,6 +15,7 @@ import android.os.Environment
 import android.os.StatFs
 import android.os.Process
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +55,8 @@ class PhoneBehaviorStatusFragment: Fragment() {
         val mobileDataEnabled = isMobileDataEnabled(requireContext())
         binding.lteStatusText.text = if (mobileDataEnabled) "ON" else "OFF"
 
+        val oneUIVersionInt = getOneUIVersion()?.toIntOrNull() ?: 0
+
         val storageCapacity = getInternalStorageCapacity()
         if (storageCapacity != null) {
             val totalSize = storageCapacity.first
@@ -62,7 +65,7 @@ class PhoneBehaviorStatusFragment: Fragment() {
             val totalSizeGB: Long
             val availableSizeGB: Long
 
-            if (version >= 14) {
+            if (version >= 14 && oneUIVersionInt >= 60000) {
                 totalSizeGB = totalSize / 1000000000
                 availableSizeGB = availableSize / 1000000000
             } else {
@@ -195,5 +198,17 @@ class PhoneBehaviorStatusFragment: Fragment() {
             e.printStackTrace()
         }
         return false
+    }
+
+    private fun getOneUIVersion(): String? {
+        return try {
+            val systemPropertiesClass = Class.forName("android.os.SystemProperties")
+            val getMethod: Method = systemPropertiesClass.getMethod("get",String::class.java,String::class.java)
+
+            getMethod.invoke(null, "ro.build.version.oneui", null) as? String
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 }
