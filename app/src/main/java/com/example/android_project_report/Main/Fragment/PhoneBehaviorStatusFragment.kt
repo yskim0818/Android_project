@@ -77,14 +77,7 @@ class PhoneBehaviorStatusFragment: Fragment() {
             binding.sdcardCapacityText.text = "${totalSizeGB}GB / ${availableSizeGB}GB"
         }
 
-        val installedAppsCount = getInstalledAppsCount()
         val runningAppsCount = getRunningAppsCount()
-
-//        binding.appNumberText.text = "$installedAppsCount/$runningAppsCount"
-
-        //test
-
-        val totalInstalledAppsCount = getAllInstalledAppsCount()
         val userAppsCount = getUserAppsCount()
         binding.appNumberText.text = "$userAppsCount / $runningAppsCount"
     }
@@ -121,34 +114,6 @@ class PhoneBehaviorStatusFragment: Fragment() {
         val availableSize = blockSize * availableBlocks
 
         return Pair(totalSize, availableSize)
-    }
-
-    private fun getInstalledAppsCount(): Int {
-        val packageManager = requireContext().packageManager
-        val apps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
-
-        return apps.size
-    }
-//      전체 동작중인 앱 가져오기
-//    private fun getRunningAppsCount() : Int {
-//        val activityManager = requireContext().getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-//        val runningAppProcess = activityManager.runningAppProcesses
-//        return runningAppProcess?.size ?: 0
-//
-////        val usageStatsManager =  requireContext().getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
-////        val time = System.currentTimeMillis()
-////        val stats = usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 3600, time)
-////
-////        if (stats != null && stats.isNotEmpty()) {
-////            return stats.size
-////        }
-////        return 0
-//    }
-    //전체 앱 가져오기 test
-    private fun getAllInstalledAppsCount(): Int {
-        val packageManager = requireContext().packageManager
-        val apps = packageManager.getInstalledPackages(0)
-        return apps.size
     }
 
     private fun getUserAppsCount(): Int {
