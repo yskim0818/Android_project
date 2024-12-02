@@ -1,8 +1,6 @@
 package com.example.android_project_report.Main.Fragment
 
-import android.app.ActivityManager
 import android.app.AppOpsManager
-import android.app.Application
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.Context.APP_OPS_SERVICE
@@ -10,7 +8,6 @@ import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
@@ -58,6 +55,8 @@ class PhoneBehaviorStatusFragment: Fragment() {
         val mobileDataEnabled = isMobileDataEnabled(requireContext())
         binding.lteStatusText.text = if (mobileDataEnabled) "ON" else "OFF"
 
+        val oneUIVersionInt = getOneUIVersion()?.toIntOrNull() ?: 0
+
         val storageCapacity = getInternalStorageCapacity()
         if (storageCapacity != null) {
             val totalSize = storageCapacity.first
@@ -66,7 +65,7 @@ class PhoneBehaviorStatusFragment: Fragment() {
             val totalSizeGB: Long
             val availableSizeGB: Long
 
-            if (version >= 14) {
+            if (version >= 14 && oneUIVersionInt >= 60000) {
                 totalSizeGB = totalSize / 1000000000
                 availableSizeGB = availableSize / 1000000000
             } else {
@@ -78,6 +77,12 @@ class PhoneBehaviorStatusFragment: Fragment() {
         }
 
         val runningAppsCount = getRunningAppsCount()
+<<<<<<< HEAD
+=======
+
+
+        val totalInstalledAppsCount = getAllInstalledAppsCount()
+>>>>>>> a64249115bbf009b34f963c44e687383d92fbbf4
         val userAppsCount = getUserAppsCount()
         binding.appNumberText.text = "$userAppsCount / $runningAppsCount"
     }
@@ -116,6 +121,22 @@ class PhoneBehaviorStatusFragment: Fragment() {
         return Pair(totalSize, availableSize)
     }
 
+<<<<<<< HEAD
+=======
+    private fun getInstalledAppsCount(): Int {
+        val packageManager = requireContext().packageManager
+        val apps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
+
+        return apps.size
+    }
+
+    private fun getAllInstalledAppsCount(): Int {
+        val packageManager = requireContext().packageManager
+        val apps = packageManager.getInstalledPackages(0)
+        return apps.size
+    }
+
+>>>>>>> a64249115bbf009b34f963c44e687383d92fbbf4
     private fun getUserAppsCount(): Int {
         val packageManager = requireContext().packageManager
         val apps = packageManager.getInstalledApplications(0)
@@ -182,5 +203,17 @@ class PhoneBehaviorStatusFragment: Fragment() {
             e.printStackTrace()
         }
         return false
+    }
+
+    private fun getOneUIVersion(): String? {
+        return try {
+            val systemPropertiesClass = Class.forName("android.os.SystemProperties")
+            val getMethod: Method = systemPropertiesClass.getMethod("get",String::class.java,String::class.java)
+
+            getMethod.invoke(null, "ro.build.version.oneui", null) as? String
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 }

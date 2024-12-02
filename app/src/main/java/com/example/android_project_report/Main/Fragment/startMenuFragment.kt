@@ -1,15 +1,12 @@
 package com.example.android_project_report.Main.Fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.android_project_report.R
 import com.example.android_project_report.Util.setOnSingleClickListener
-import com.example.android_project_report.databinding.FragmentAddContactBinding
 import com.example.android_project_report.databinding.FragmentStartMenuBinding
 
 class StartMenuFragment: Fragment() {

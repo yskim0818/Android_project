@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.util.doubleFromBits
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android_project_report.Data.DBHelper
@@ -15,7 +14,6 @@ import com.example.android_project_report.Main.MainData.MainDataViewAdapter
 import com.example.android_project_report.R
 import com.example.android_project_report.Util.setOnSingleClickListener
 import com.example.android_project_report.databinding.FragmentManageContactsBinding
-import kotlin.concurrent.thread
 
 class ManageContactsFragment: Fragment(), MainDataViewAdapter.OnContactClickListener {
 
@@ -47,12 +45,9 @@ class ManageContactsFragment: Fragment(), MainDataViewAdapter.OnContactClickList
                 .replace(R.id.fragment_manage_contacts, AddContactFragment())
                 .addToBackStack(null)
                 .commit()
-            Log.d("ManageContactsFragment", "addContactBtn 클릭")
         }
 
     }
-
-    //test
 
     override fun onDestroyView() {
         super.onDestroyView()
