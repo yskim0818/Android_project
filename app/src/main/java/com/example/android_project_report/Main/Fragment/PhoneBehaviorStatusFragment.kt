@@ -77,12 +77,6 @@ class PhoneBehaviorStatusFragment: Fragment() {
         }
 
         val runningAppsCount = getRunningAppsCount()
-<<<<<<< HEAD
-=======
-
-
-        val totalInstalledAppsCount = getAllInstalledAppsCount()
->>>>>>> a64249115bbf009b34f963c44e687383d92fbbf4
         val userAppsCount = getUserAppsCount()
         binding.appNumberText.text = "$userAppsCount / $runningAppsCount"
     }
@@ -121,22 +115,6 @@ class PhoneBehaviorStatusFragment: Fragment() {
         return Pair(totalSize, availableSize)
     }
 
-<<<<<<< HEAD
-=======
-    private fun getInstalledAppsCount(): Int {
-        val packageManager = requireContext().packageManager
-        val apps = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
-
-        return apps.size
-    }
-
-    private fun getAllInstalledAppsCount(): Int {
-        val packageManager = requireContext().packageManager
-        val apps = packageManager.getInstalledPackages(0)
-        return apps.size
-    }
-
->>>>>>> a64249115bbf009b34f963c44e687383d92fbbf4
     private fun getUserAppsCount(): Int {
         val packageManager = requireContext().packageManager
         val apps = packageManager.getInstalledApplications(0)
